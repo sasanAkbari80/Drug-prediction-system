@@ -1,16 +1,6 @@
-import numpy as np
-from sklearn.preprocessing import LabelEncoder
+from sklearn.tree import DecisionTreeClassifier
 
-def encode_features(X):
-    X = X.copy()
-
-    sex_encoder = LabelEncoder()
-    X[:, 1] = sex_encoder.fit_transform(X[:, 1])
-
-    bp_encoder = LabelEncoder()
-    X[:, 2] = bp_encoder.fit_transform(X[:, 2])
-
-    chol_encoder = LabelEncoder()
-    X[:, 3] = chol_encoder.fit_transform(X[:, 3])
-
-    return X
+def train_model(X_train, y_train):
+    model = DecisionTreeClassifier(criterion='entropy', max_depth=4)
+    model.fit(X_train, y_train)
+    return model
